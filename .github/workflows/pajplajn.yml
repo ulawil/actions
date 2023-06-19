@@ -1,0 +1,25 @@
+name: A pipeline 
+
+on:
+  push
+  
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    name: job numero uno
+    
+    steps:
+      - name: say hi
+        run: echo "hi"
+        
+  job2:
+    name: job numero dos
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.5.2
+        
+      - name: run unit tests
+        run: mvn clean test
+      
