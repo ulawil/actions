@@ -20,6 +20,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3.5.2
         
+      - name: setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+          
       - name: run unit tests
         run: mvn clean test
       
