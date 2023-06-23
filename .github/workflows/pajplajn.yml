@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: lol
-        if: ${{ env.BOOLEAN_TEST_1 }}
+        if: ${{ $BOOLEAN_TEST_1 }}
         run: echo "lol"
         
       - name: lel
-        if: ${{ env.BOOLEAN_TEST_2 }}
+        if: ${{ $BOOLEAN_TEST_2 }}
         run: echo "lel"
         
         
