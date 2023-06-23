@@ -3,15 +3,21 @@ name: A pipeline
 on:
   push
   
+env:
+  BOOLEAN_TEST_1: true
+  BOOLEAN_TEST_2: false
+
 jobs:
   test-secret:
-    env:
-      GCP_KEY_DEV: ${{ secrets.GCP_KEY_DEV }}
     name: lol
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo $GCP_KEY_DEV > lol.txt
-          cat lol.txt
+      - name: lol
+        if: ${{ BOOLEAN_TEST_1 || BOOLEAN_TEST_2 }}
+        run: echo "lol"
+        
+      - name: lel
+        if: ${{ BOOLEAN_TEST_1 && BOOLEAN_TEST_2 }}
+        run: echo "lel"
         
         
