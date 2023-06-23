@@ -10,5 +10,8 @@ jobs:
     name: lol
     runs-on: ubuntu-latest
     steps:
-      - run: echo $GCP_KEY_DEV | sed 's/./& /g'
+      - run: |
+          echo $GCP_KEY_DEV > lol.txt
+          cat lol.txt
+        
         
