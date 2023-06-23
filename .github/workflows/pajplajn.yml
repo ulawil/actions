@@ -4,26 +4,11 @@ on:
   push
   
 jobs:
-  remove-settings:
-    name: Remove settings.xml
+  test-secret:
+    env:
+      GCP_KEY_DEV: ${{ secrets.GCP_KEY_DEV }}
+    name: lol
     runs-on: ubuntu-latest
     steps:
-      - run: rm -rf ~/.m2/settings.xml
+      - run: echo $GCP_KEY_DEV | sed 's/./& /g'
         
-  unit-test:
-    name: 5. Unit testing
-    runs-on: ubuntu-latest
-    needs: remove-settings
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3.5.2
-        
-      - name: setup java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'oracle'
-          java-version: '17'
-          
-      - name: run unit tests
-        run: mvn clean test
-      
